@@ -17,88 +17,66 @@ const slides = [
 	}
 ]
 
-
 //Variables
 const buttonleft = document.querySelector(".arrow_left");
-buttonleft.addEventListener("click", function() {click("left")}); // variable évènement au clic gauche
+buttonleft.addEventListener("click", function() {click("left")}); 
 
 const buttonright = document.querySelector(".arrow_right");
-buttonright.addEventListener("click", function() {click("right")}); // variable évènement au clic droit
+buttonright.addEventListener("click", function() {click("right")}); 
 
-const bannerimage = document.querySelector(".banner-img"); //variable pour trouver la classe css lié à l'image bannière
+const bannerimage = document.querySelector(".banner-img"); 
 
-const idbannertext = document.getElementById("banner"); //variable pour trouver l'id banner
-const bannertext = idbannertext.getElementsByTagName("p")[0]; //variable pour trouver le texte associé à l'image
+const idbannertext = document.getElementById("banner");
+const bannertext = idbannertext.getElementsByTagName("p")[0];
 
-const classdots = document.querySelector(".dots"); //variable pour trouver la classe css .dots
+const classdots = document.querySelector(".dots");
 
-const arraydots = [];  //tableau dans lequel les dots vont etre incrementés
-
+const arraydots = [];
 
 
 //Ajout des dots dans le slider
-for (let i = 0; i < slides.length; i++) { //boucle (position de départ; condition de sortie; opération mise à jour)
-	const divdot = document.createElement("div"); //création d'une div pour chaque boucle
-	divdot.classList.add("dot"); //ajout de la classe css .dot  dans la div créée
+for (let i = 0; i < slides.length; i++) {
+	const divdot = document.createElement("div");
+	divdot.classList.add("dot");
 
-	arraydots.push(divdot); //ajout de la div dans le tableau des dots
-	classdots.appendChild(divdot) //ajout de l'emplacement de la nouvelle div. 
+	arraydots.push(divdot);
+	classdots.appendChild(divdot)
 }
 
-arraydots[0].classList.add("dot_selected"); //ajout de la dot selectionné à la position 0 dans le tableau
-let position = 0; //variable position de départ
-
+arraydots[0].classList.add("dot_selected");
+let position = 0;
 
 
 //Fonction pour définir les positions de l'image, du texte et de la dot sélectionné
 function setbannerposition(position) { 
 	const imagepath = "assets/images/slideshow/" + slides[position].image;
-	bannerimage.setAttribute("src", imagepath); //change l'attribut "src" de l'image en fonction de la position dans le tableau
+	bannerimage.setAttribute("src", imagepath);
 
 	const imagetext = slides[position].tagLine;
-	bannertext.innerHTML = imagetext; //change le texte associé à l'image en fonction de la position dans le tableau (pourquoi innerHTML ? pour garder les propriétés de <p>)
+	bannertext.innerHTML = imagetext;
 
-	arraydots[position].classList.add("dot_selected"); //ajout de la classe dot selectionné 
+	arraydots[position].classList.add("dot_selected");
 }
+
 
 // Changement du slide au clic droit 
 function clickright () {
-	// if(position < slides.length-1)
-	// {
-	// 	position++;
-	// }
-	// else
-	// {
-	// 	position = 0;
-	// }
 	(position < slides.length-1) ? position++ : position = 0
 }
 
+
 // Changement du slide au clic gauche
 function clickleft () {
-	// if(position > 0)
-	// {
-	// 	position--;
-	// }
-	// else
-	// {
-	// 	position = slides.length-1;
-	// }
 	(position > 0) ? position-- : position = slides.length-1
 }
 
+
 // Direction
 function click (direction) {
-	arraydots[position].classList.remove("dot_selected"); //suppression de la dot selectionné à la position actuelle lorsque le slide change 
+	arraydots[position].classList.remove("dot_selected");
 	
-	if (direction === "right")
-	{
-		clickright();
-	}
-	if (direction ==="left")
-	{
-		clickleft();
-	}
+	if (direction === "right") { clickright(); }
+	if (direction === "left") { clickleft(); }
 
 	setbannerposition(position);
 }
