@@ -76,14 +76,15 @@ function clickright () {
 
 // Changement du slide au clic gauche
 function clickleft () {
-	if(position > 0)
-	{
-		position--;
-	}
-	else
-	{
-		position = slides.length-1;
-	}
+	// if(position > 0)
+	// {
+	// 	position--;
+	// }
+	// else
+	// {
+	// 	position = slides.length-1;
+	// }
+	(position > 0) ? position-- : position = slides.length-1
 }
 
 // Direction
