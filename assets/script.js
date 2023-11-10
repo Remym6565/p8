@@ -101,3 +101,5 @@ function click (direction) {
 
 	setbannerposition(position);
 }
+
+test
